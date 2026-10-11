@@ -1,0 +1,15 @@
+
+services:
+  hotel-rag:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hotel-rag
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    volumes:
+      - ./documents:/vectorstore/app/documents:ro
+      - ./vectorstore:/vectorstore/app/vectorstore
+    restart: unless-stopped
